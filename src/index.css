@@ -1,0 +1,1863 @@
+/* ==========================================================================
+   SG2RI - Design System Fiel aos Mockups Oficiais
+   ========================================================================== */
+
+:root {
+  /* Cores Principais do Mockup */
+  --sg-navy: #00254d;
+  --sg-navy-dark: #001f3f;
+  --sg-navy-active: #0d3a6d;
+  --sg-navy-hover: rgba(255, 255, 255, 0.08);
+
+  --sg-bg: #f4f6fa;
+  --sg-card-bg: #ffffff;
+  --sg-border: rgba(0, 0, 0, 0.06);
+
+  /* Eventos da Grade */
+  --sg-event-confirmed: #001f3f;
+  --sg-event-pending: #c86a3b;
+
+  /* Badges de Tabela */
+  --sg-badge-blue-bg: #dbeafe;
+  --sg-badge-blue-text: #1e40af;
+  --sg-badge-peach-bg: #ffedd5;
+  --sg-badge-peach-text: #9a3412;
+
+  --sidebar-width: 250px;
+  --header-height: 64px;
+
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --bs-body-font-family: var(--font-main);
+  --bs-body-bg: var(--sg-bg);
+  --bs-body-color: #111827;
+
+  /* Superfícies e contornos genéricos (usados por Alerts/painéis tonais) */
+  --surface: #ffffff;
+  --surface-container: #eef2f7;
+  --surface-container-low: #f8fafc;
+  --on-surface: #0f172a;
+  --on-surface-variant: #475569;
+  --outline-variant-20: rgba(15, 23, 42, 0.12);
+
+  /* Containers semânticos (sucesso/erro/aviso/destaque) */
+  --success-container: #dcfce7;
+  --on-success-container: #15803d;
+  --error-container: #fee2e2;
+  --on-error-container: #b91c1c;
+  --tertiary-container: #fef3c7;
+  --on-tertiary-container: #92400e;
+  --primary-fixed: #dbeafe;
+  --on-primary-fixed: #1e40af;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--sg-bg);
+  color: #111827;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tipografia de Títulos */
+h1, h2, h3, h4, h5, h6,
+.mockup-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   Top Header (Dark Navy #00254d)
+   ========================================================================== */
+.mockup-header {
+  height: var(--header-height);
+  background-color: var(--sg-navy);
+  color: #ffffff;
+  z-index: 1030;
+}
+
+.mockup-logo-text {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.avatar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Left Sidebar (Dark Navy #00254d)
+   ========================================================================== */
+.mockup-sidebar {
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  flex-shrink: 0;
+  background-color: var(--sg-navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.25s ease, padding 0.25s ease, opacity 0.2s ease;
+  z-index: 1025;
+}
+
+@media (min-width: 768px) {
+  .mockup-sidebar.sidebar-collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .mockup-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1050;
+    transform: translateX(-100%);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
+  }
+
+  .mockup-sidebar.sidebar-open {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.sidebar-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  color: #9cb0c9;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.sidebar-nav-btn:hover {
+  background-color: var(--sg-navy-hover);
+  color: #ffffff;
+}
+
+.sidebar-nav-btn.active {
+  background-color: var(--sg-navy-active);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Botão Sair - Card Branco no rodapé da Sidebar */
+.btn-mockup-sair {
+  background-color: #ffffff !important;
+  color: #dc2626 !important;
+  border: none;
+  border-radius: 0.625rem;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-mockup-sair:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  color: #b91c1c !important;
+}
+
+/* ==========================================================================
+   Cards dos Mockups
+   ========================================================================== */
+.mockup-card {
+  background-color: var(--sg-card-bg);
+  border-radius: 1rem;
+  border: 1px solid var(--sg-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.mockup-card-dark {
+  background-color: var(--sg-navy-dark);
+  color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 31, 63, 0.12);
+}
+
+/* Botões Largos de Ação Rápida */
+.btn-action-wide {
+  background-color: var(--sg-navy);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 37, 77, 0.15);
+}
+
+.btn-action-wide:hover {
+  background-color: var(--sg-navy-active);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 37, 77, 0.25);
+}
+
+/* Botão Azul de Nova Reserva (Topo do Dashboard Admin) */
+.btn-mockup-primary {
+  background-color: #2563eb;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 50rem;
+  padding: 0.55rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-mockup-primary:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.btn-mockup-primary:disabled,
+.btn-mockup-outline:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Botão Secundário/Outline (cancelar, voltar, ações discretas) */
+.btn-mockup-outline {
+  background-color: transparent;
+  color: var(--sg-navy) !important;
+  border: 1.5px solid var(--sg-border);
+  border-radius: 50rem;
+  padding: 0.55rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-mockup-outline:hover:not(:disabled) {
+  background-color: var(--sg-bg);
+  border-color: var(--sg-navy);
+}
+
+/* Chips de status semânticos (reservas, itens, etc.) */
+.mockup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 50rem;
+  white-space: nowrap;
+}
+
+.mockup-chip--success { background-color: var(--success-container); color: var(--on-success-container); }
+.mockup-chip--warning { background-color: var(--tertiary-container); color: var(--on-tertiary-container); }
+.mockup-chip--error   { background-color: var(--error-container); color: var(--on-error-container); }
+.mockup-chip--neutral { background-color: #e2e8f0; color: #475569; }
+
+/* Modal com acabamento consistente ao restante do mockup */
+.mockup-modal .modal-content {
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+}
+
+/* Fundo da tela de autenticação (Login) */
+.bg-auth-gradient {
+  background: linear-gradient(160deg, var(--sg-navy) 0%, var(--sg-navy-dark) 55%, #001529 100%);
+}
+
+/* Badges em Pílula da Tabela */
+.mockup-badge-blue {
+  background-color: var(--sg-badge-blue-bg);
+  color: var(--sg-badge-blue-text);
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+.mockup-badge-peach {
+  background-color: var(--sg-badge-peach-bg);
+  color: var(--sg-badge-peach-text);
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+/* Badges dos Cards do Solicitante */
+.pill-confirmada {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 50rem;
+}
+
+.pill-pendente {
+  background-color: #fef3c7;
+  color: #b45309;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 50rem;
+}
+
+/* Ícones em caixas coloridas nos cards */
+.icon-box-blue {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.625rem;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.icon-box-red {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.625rem;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* ==========================================================================
+   Grade do Calendário de Disponibilidade (Mockup Imagens 3 e 4)
+   ========================================================================== */
+.calendar-event-confirmed,
+.calendar-event-pending {
+  border-radius: 0.625rem;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.calendar-event-confirmed {
+  background-color: var(--sg-event-confirmed);
+  box-shadow: 0 4px 10px rgba(0, 31, 63, 0.2);
+}
+
+.calendar-event-pending {
+  background-color: var(--sg-event-pending);
+  box-shadow: 0 4px 10px rgba(200, 106, 59, 0.2);
+}
+
+.calendar-event-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.calendar-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.calendar-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.calendar-table td {
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  padding: 0.75rem 0.5rem;
+  vertical-align: top;
+  height: 90px;
+}
+
+.calendar-table td:last-child {
+  border-right: none;
+}
+
+/* ==========================================================================
+   Página: Configurações de Perfil (usuários não-admin)
+   ========================================================================== */
+
+/* Toast de feedback */
+.config-toast {
+  position: fixed;
+  top: calc(var(--header-height) + 1rem);
+  right: 1.5rem;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  animation: config-toast-in 0.3s ease;
+  max-width: 380px;
+}
+
+.config-toast--success {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.config-toast--error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+@keyframes config-toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Layout geral da página */
+.config-page__header h1 {
+  font-size: 1.65rem;
+}
+
+.config-page__body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 767.98px) {
+  .config-page__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card de foto */
+.config-photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  gap: 0.25rem;
+}
+
+.config-photo-wrapper {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  margin-bottom: 1rem;
+}
+
+.config-photo-img {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e2e8f0;
+}
+
+.config-photo-avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.03em;
+  border: 3px solid #e2e8f0;
+}
+
+.config-photo-cam-btn {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  padding: 0;
+}
+
+.config-photo-cam-btn:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.1);
+}
+
+.config-photo-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.config-photo-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Painel direito */
+.config-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Cards de formulário */
+.config-form-card {
+  padding: 1.75rem;
+}
+
+.config-form-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #0f172a;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Grid interno do formulário */
+.config-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .config-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.config-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Ocupa as duas colunas */
+.config-form-group--full {
+  grid-column: 1 / -1;
+}
+
+/* Ocupa a coluna larga (ex: nome) */
+.config-form-group--wide {
+  grid-column: 1;
+}
+
+/* Labels */
+.config-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+/* Inputs */
+.config-input {
+  width: 100%;
+  padding: 0.6rem 0.875rem;
+  font-size: 0.9rem;
+  font-family: var(--font-main);
+  color: #1e293b;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.config-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.config-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Input somente leitura */
+.config-input--readonly {
+  background-color: #f8fafc;
+  color: #64748b;
+  cursor: default;
+  user-select: none;
+}
+
+.config-input--readonly:focus {
+  border-color: #e2e8f0;
+  box-shadow: none;
+}
+
+/* Badge "Info" dentro do campo de matrícula */
+.config-input-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.4rem;
+  flex-shrink: 0;
+}
+
+/* Rodapé de ações */
+.config-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 0.25rem;
+}
+
+.config-btn-cancel {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.config-btn-cancel:hover {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.config-btn-save {
+  background-color: var(--sg-navy);
+  color: #ffffff;
+  border: none;
+  border-radius: 50rem;
+  padding: 0.6rem 1.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 37, 77, 0.18);
+}
+
+.config-btn-save:hover {
+  background-color: var(--sg-navy-active);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 37, 77, 0.26);
+}
+
+.config-btn-save:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Abas de Configurações (visão Admin)
+   ========================================================================== */
+.config-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 1.75rem;
+}
+
+.config-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.config-tab-btn:hover {
+  color: #0f172a;
+  background-color: #f8fafc;
+}
+
+.config-tab-btn--active {
+  color: var(--sg-navy);
+  font-weight: 700;
+  border-bottom-color: var(--sg-navy);
+  background-color: transparent;
+}
+
+.config-tab-content {
+  animation: tab-fade-in 0.2s ease;
+}
+
+@keyframes tab-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Gestão de Usuários — Toolbar
+   ========================================================================== */
+.gu-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.gu-toolbar__search {
+  position: relative;
+  flex: 1 1 240px;
+}
+
+.gu-toolbar__search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.gu-search-input {
+  padding-left: 2.5rem !important;
+}
+
+.config-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  padding-right: 2.5rem !important;
+  cursor: pointer;
+}
+
+.gu-role-filter {
+  flex: 0 0 180px;
+}
+
+.gu-btn-novo {
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50rem;
+  padding: 0.6rem 1.4rem;
+}
+
+/* ==========================================================================
+   Gestão de Usuários — Tabela
+   ========================================================================== */
+.gu-table-wrapper {
+  overflow-x: auto;
+}
+
+.gu-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gu-table thead tr {
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.gu-table th {
+  padding: 0.9rem 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gu-table__row {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.12s ease;
+}
+
+.gu-table__row:last-child { border-bottom: none; }
+.gu-table__row:hover { background-color: #f8fafc; }
+
+.gu-table td {
+  padding: 0.85rem 1.25rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .gu-th-hide-sm { display: none; }
+}
+
+/* Célula do usuário (avatar + nome + e-mail) */
+.gu-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.gu-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.gu-user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.gu-user-email {
+  font-size: 0.78rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.gu-td-muted {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+/* Rodapé da tabela */
+.gu-table-footer {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Estado vazio */
+.gu-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  color: #94a3b8;
+}
+
+.gu-empty__icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.gu-empty__text {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Estado de carregamento */
+.gu-table-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Ações inline da tabela */
+.gu-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.gu-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.4rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gu-action-btn--edit { color: #2563eb; }
+.gu-action-btn--edit:hover {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.gu-action-btn--delete { color: #dc2626; }
+.gu-action-btn--delete:hover {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   Badges de Perfil
+   ========================================================================== */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: 50rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.role-badge--admin {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.role-badge--professor {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.role-badge--aluno {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+/* ==========================================================================
+   Modal de Usuário (cadastro / edição / confirmação)
+   ========================================================================== */
+.gu-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: modal-backdrop-in 0.2s ease;
+}
+
+@keyframes modal-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.gu-modal {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modal-slide-in 0.25s ease;
+}
+
+.gu-modal--sm {
+  max-width: 420px;
+}
+
+@keyframes modal-slide-in {
+  from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.gu-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem 0;
+}
+
+.gu-modal__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gu-modal__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.5rem;
+  background-color: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.gu-modal__icon--danger {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.gu-modal__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.gu-modal__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.gu-modal__close:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.gu-modal__body {
+  padding: 1.5rem 1.75rem;
+}
+
+.gu-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0 1.75rem 1.5rem;
+}
+
+/* Botão destrutivo */
+.gu-btn-danger {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 50rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}
+
+.gu-btn-danger:hover:not(:disabled) {
+  background-color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.gu-btn-danger:disabled,
+.config-btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   Spinner de loading inline
+   ========================================================================== */
+.gu-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: gu-spin 0.7s linear infinite;
+  vertical-align: middle;
+}
+
+.gu-spinner--lg {
+  width: 28px;
+  height: 28px;
+  border-color: rgba(37, 99, 235, 0.2);
+  border-top-color: #2563eb;
+}
+
+@keyframes gu-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Zona de Upload CSV
+   ========================================================================== */
+.csv-drop-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 0.875rem;
+  padding: 2.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  background-color: #f8fafc;
+}
+
+.csv-drop-zone:hover,
+.csv-drop-zone:focus-visible {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  outline: none;
+}
+
+.csv-drop-zone--drag {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  transform: scale(1.01);
+}
+
+.csv-drop-zone--loading {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.csv-drop-zone__icon {
+  font-size: 2rem;
+  color: #94a3b8;
+}
+
+.csv-drop-zone--drag .csv-drop-zone__icon {
+  color: #2563eb;
+}
+
+.csv-drop-zone__text {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+}
+
+.csv-drop-zone__hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.csv-model-hint {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.csv-model-hint code {
+  background-color: #f1f5f9;
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.78rem;
+}
+
+/* Resultados da importação */
+.csv-result {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.csv-result__success {
+  display: flex;
+  align-items: center;
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.625rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.csv-result__errors {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.625rem;
+  padding: 0.75rem 1rem;
+}
+
+.csv-result__errors-title {
+  color: #b91c1c;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.csv-result__errors-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #b91c1c;
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* ==========================================================================
+   Página: Nova Reserva (Wizard de Solicitação)
+   ========================================================================== */
+
+.nr-tip-box {
+  background-color: #eaf2fe;
+  border: 1px solid #bfdbfe;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  max-width: 420px;
+}
+
+.nr-tip-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.nr-tip-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1e3a8a;
+  margin-bottom: 0.2rem;
+}
+
+.nr-tip-text {
+  font-size: 0.8rem;
+  color: #1e40af;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Stepper */
+.nr-stepper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.nr-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0;
+  position: relative;
+  text-align: center;
+}
+
+.nr-step-line {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: var(--sg-border);
+  z-index: 0;
+}
+
+.nr-step:last-child .nr-step-line {
+  display: none;
+}
+
+.nr-step-line--done {
+  background-color: var(--sg-navy);
+}
+
+.nr-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  position: relative;
+  z-index: 1;
+  background-color: #e5e9f0;
+  color: #94a3b8;
+  border: 2px solid #e5e9f0;
+  transition: all 0.2s ease;
+}
+
+.nr-step-circle--active {
+  background-color: var(--sg-navy);
+  border-color: var(--sg-navy);
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 37, 77, 0.12);
+}
+
+.nr-step-circle--done {
+  background-color: var(--sg-navy);
+  border-color: var(--sg-navy);
+  color: #ffffff;
+}
+
+.nr-step-label {
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.nr-step-label--active,
+.nr-step-label--done {
+  color: var(--sg-navy);
+}
+
+/* Cards de recurso selecionáveis - Etapa 1 */
+.nr-resource-card {
+  background-color: var(--sg-card-bg);
+  border: 2px solid var(--sg-border);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  height: 100%;
+}
+
+.nr-resource-card:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.nr-resource-card--selected {
+  border-color: var(--sg-navy);
+  background-color: #eef4fb;
+  box-shadow: 0 4px 14px rgba(0, 37, 77, 0.12);
+}
+
+.nr-resource-card__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 0.65rem;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.nr-resource-card--selected .nr-resource-card__icon {
+  background-color: var(--sg-navy);
+  color: #ffffff;
+}
+
+.nr-resource-card__check {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  color: var(--sg-navy);
+  font-size: 1.1rem;
+}
+
+/* Badge de disponibilidade - Etapa 2 */
+.nr-badge-available,
+.nr-badge-unavailable,
+.nr-badge-checking,
+.nr-badge-priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 50rem;
+}
+
+.nr-badge-available {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.nr-badge-unavailable {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.nr-badge-checking {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+/* RN02 - prioridade docente sobre pedidos pendentes de alunos */
+.nr-badge-priority {
+  background-color: #ede9fe;
+  color: #6d28d9;
+}
+
+.nr-priority-tag {
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #6d28d9;
+  background-color: #ede9fe;
+  padding: 0.2rem 0.55rem;
+  border-radius: 50rem;
+  width: fit-content;
+}
+
+/* Caixa de termos de responsabilidade */
+.nr-terms-box {
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 0.85rem;
+  padding: 1rem 1.1rem;
+  font-size: 0.85rem;
+  color: #7c2d12;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.nr-terms-box a {
+  color: var(--sg-navy);
+  font-weight: 600;
+}
+
+/* Tiles de resumo - Etapa 3 */
+.nr-summary-tile {
+  background-color: #f8fafc;
+  border-radius: 0.85rem;
+  padding: 1rem 1.1rem;
+  height: 100%;
+}
+
+.nr-summary-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================================================
+   Página: Gestão de Solicitações (Admin)
+   ========================================================================== */
+
+/* Pills de filtro por status */
+.sol-filter-pill {
+  border: 1px solid var(--sg-border);
+  background-color: #ffffff;
+  color: #475569;
+  padding: 0.45rem 1.1rem;
+  border-radius: 50rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.sol-filter-pill:hover {
+  border-color: var(--sg-navy);
+  color: var(--sg-navy);
+}
+
+.sol-filter-pill--active,
+.sol-filter-pill--active:hover {
+  background-color: var(--sg-navy);
+  border-color: var(--sg-navy);
+  color: #ffffff;
+}
+
+/* Avatar circular do solicitante (foto real ou iniciais) */
+.sol-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sol-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Linha da tabela clicável (abre os detalhes) */
+.sol-row {
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.sol-row:hover {
+  background-color: #f8fafc;
+}
+
+/* Indicador de status em ponto colorido + texto */
+.sol-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.45rem;
+  flex-shrink: 0;
+}
+
+/*
+ * Botões de ação com fundo tonal sólido (não combinar com a classe "btn" do
+ * Bootstrap aqui: bootstrap.min.css é importado depois de index.css, então
+ * "btn" + ".btn-mockup-*" empatam em especificidade e o CSS carregado por
+ * último vence, anulando o background-color e deixando o botão quase invisível.
+ */
+.sol-action-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sol-action-btn--approve {
+  background-color: var(--success-container);
+  color: var(--on-success-container);
+}
+
+.sol-action-btn--approve:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.sol-action-btn--reject {
+  background-color: var(--error-container);
+  color: var(--on-error-container);
+}
+
+.sol-action-btn--reject:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.sol-action-btn--ghost {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.sol-action-btn--ghost:hover:not(:disabled) {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.sol-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Impressão do Relatório (RF05) — recorte para papel A4
+   ========================================================================== */
+
+/*
+ * @page fica fora de @media print de propósito: já só se aplica à impressão,
+ * e alguns motores de paginação ignoram @page quando ele vem aninhado dentro
+ * de outro at-rule.
+ *
+ * margin fica em 0 de propósito: a margem do @page é uma região à parte da
+ * caixa normal do documento, pintada pelo próprio motor de impressão do
+ * Chromium com um padrão interno (às vezes acinzentado) que não obedece a
+ * nenhum "background" do html/body — foi essa a causa real do papel saindo
+ * com um tom acinzentado, mesmo com o fundo do body forçado para branco. A
+ * margem visual é recriada abaixo como padding comum em .app-main-content,
+ * que fica dentro da caixa normal e portanto respeita o background do body.
+ */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  /*
+   * Com o sistema operacional/navegador em modo escuro, o Chromium pinta as
+   * margens da página impressa (a moldura fora da área de conteúdo definida
+   * em @page) usando um tom derivado do "color-scheme" do documento — e não
+   * necessariamente o background-color do body/html. Sem declarar
+   * "color-scheme: light" aqui, isso aparece como um papel acinzentado ao
+   * redor/atrás do relatório mesmo com o fundo do body forçado para branco
+   * logo abaixo. Como nada neste app depende de dark mode, é seguro travar
+   * em claro só para a impressão.
+   */
+  html {
+    color-scheme: light only;
+  }
+
+  /*
+   * Sem isto, o Chrome/Brave só imprimem background-color/box-shadow se o
+   * usuário marcar manualmente "Gráficos de segundo plano" no diálogo de
+   * impressão (opção que vem desmarcada por padrão em várias instalações).
+   * Sem o fundo, texto branco sobre um cartão de fundo colorido (badges,
+   * barra de progresso etc.) some — foi essa a causa real do relatório
+   * saindo "em branco". print-color-adjust é herdado, então basta declarar
+   * no html/body para cobrir toda a árvore.
+   */
+  html, body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /*
+   * O wrapper raiz do layout (AppLayout) pinta um fundo cinza-azulado via
+   * style inline (var(--sg-bg)) para a tela. Sem neutralizar aqui, agora que
+   * os fundos são forçados a imprimir, essa cor vaza por baixo de toda a
+   * página impressa e deixa o papel com um tom acinzentado/escurecido.
+   */
+  .app-shell {
+    background: #ffffff !important;
+  }
+
+  /*
+   * Substitui a margem que antes vinha do @page (ver comentário acima) — o
+   * valor é o mesmo (14mm/12mm), só que agora como padding de verdade dentro
+   * do body, então o fundo branco do body aparece embaixo dela normalmente.
+   * Seletor com ancestral extra de propósito: o elemento também carrega as
+   * utilitárias "p-3 p-md-4 p-xl-5" do Bootstrap (padding com !important na
+   * mesma especificidade 0-1-0) e, como bootstrap.min.css é importado depois
+   * de index.css, elas venceriam por ordem de origem e este padding nunca
+   * chegaria a 14mm/12mm de verdade.
+   */
+  body .app-main-content {
+    padding: 14mm 12mm !important;
+  }
+
+  .app-main-content .container-fluid {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .rel-print-header {
+    margin-bottom: 4mm;
+    padding-bottom: 3mm;
+    border-bottom: 2px solid var(--sg-navy);
+  }
+
+  /*
+   * .rel-report é "d-flex flex-column" na tela. Motores de impressão do
+   * Chromium têm bugs conhecidos ao paginar um container flex cujo conteúdo
+   * ultrapassa uma página — o resultado mais comum é a página saindo em
+   * branco. Por segurança, viramos para fluxo normal (bloco) só na impressão,
+   * repondo o espaçamento do "gap" com margem entre as seções.
+   */
+  /*
+   * Seletor com um ancestral extra (em vez de só ".rel-report") de propósito:
+   * o elemento também carrega a classe utilitária "d-flex" do Bootstrap, que
+   * define display:flex!important com a MESMA especificidade — como
+   * bootstrap.min.css é importado depois de index.css, empataria e o
+   * Bootstrap venceria por ordem de origem, anulando esta regra em silêncio.
+   */
+  .app-main-content .rel-report {
+    display: block !important;
+  }
+
+  .app-main-content .rel-report > * {
+    margin-bottom: 10mm;
+  }
+
+  .app-main-content .rel-report > *:last-child {
+    margin-bottom: 0;
+  }
+
+  /*
+   * Nada de "break-inside: avoid" em containers flex (.mockup-card e .row
+   * do Bootstrap usam display:flex) — essa combinação também é uma causa
+   * conhecida de páginas saírem em branco na impressão em alguns motores.
+   * Preferimos um card ocasionalmente cortado entre páginas a um relatório
+   * em branco.
+   */
+  .rel-report .mockup-card {
+    box-shadow: none !important;
+    border: 1px solid #d7dde5 !important;
+  }
+
+  /*
+   * A tabela de detalhamento usa a utilitária ".overflow-hidden" do Bootstrap
+   * (para os cantos arredondados do card na tela). Um bloco com overflow
+   * diferente de "visible" que precisa se estender por mais de uma página
+   * impressa é uma causa clássica de página em branco no Chromium: em vez de
+   * paginar o conteúdo, o motor tenta recortar a caixa numa única página e,
+   * dependendo do momento do layout, a altura calculada fica pequena demais
+   * — o resultado visível é justamente "a impressão saiu em branco". Como
+   * ".overflow-hidden" e esta regra têm a mesma especificidade (0-1-0) e o
+   * Bootstrap é importado depois de index.css, precisamos de um ancestral
+   * extra no seletor para garantir a vitória, como já feito com .rel-report.
+   */
+  .app-main-content .rel-print-table {
+    overflow: visible !important;
+  }
+
+  /*
+   * A tabela usa ".text-nowrap" (todas as células numa linha só) dentro de um
+   * ".table-responsive" (overflow-x:auto do Bootstrap). Com 6 colunas e nomes
+   * longos, a largura total facilmente passa da largura útil do A4. Uma área
+   * com overflow horizontal maior que a página impressa é outra causa
+   * conhecida do Chromium mostrar a pré-visualização de impressão inteira em
+   * branco (não só aquele elemento cortado) — por isso liberamos o wrap do
+   * texto e desligamos a rolagem horizontal só na impressão.
+   */
+  .app-main-content .rel-print-table .table-responsive {
+    overflow-x: visible !important;
+  }
+
+  .app-main-content .rel-print-table table {
+    white-space: normal !important;
+    width: 100% !important;
+    table-layout: auto;
+  }
+
+  .rel-print-table table {
+    font-size: 10px;
+  }
+
+  .rel-print-table thead {
+    display: table-header-group;
+  }
+
+  .rel-print-table tr {
+    break-inside: avoid;
+  }
+}
+
